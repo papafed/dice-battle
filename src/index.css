@@ -1,13 +1,165 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  background: white url('/images/background.jpg') scroll no-repeat 50% 0;
+  background-size: contain;
+  width: 90vw;
+  margin: auto;
+  height: 0;
+  /* size the div to the background-image */
+  padding-top: calc(1432 / 1920 * 90vw);
+  position: relative;
+}
+
+.player {
+  position: absolute;
+  width: 15vw;
+  height: 100%;
+  top: 17vw;
+}
+
+.progressbar {
+  width: 14px;
+  height: 27vw;
+  position: absolute;
+  top: 0;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.4);
+}
+
+.block {
+  position:absolute; 
+  left: 0;
+  right:0;
+  bottom: 0;
+  background: transparent scroll repeat-y 0 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.progressbar p {
+  position: absolute;
+  left: -5px;
+  bottom: -45px;
+}
+
+.knight .block {
+  background-image: url('/images/progress-knight.png');
+}
+
+.monster .block {
+  background-image: url('/images/progress-monster.png');
+}
+
+.body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.arm {
+  position: absolute;
+  transition: transform 0.65s ease-in;
+  width: 100%;
+  height: 100%;
+}
+
+.knight { left: 10vw; }
+.monster { right: 7vw; }
+
+.knight .progressbar {
+  left: 18vw;
+}
+
+.monster .progressbar {
+  right: 20vw;
+}
+
+.knight-1 .body {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: transparent url('/images/knights/knight-1-body.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.knight-1 .arm {
+  left: 10px;
+  top: 10px;
+  z-index: 0;
+  transform-origin: 2px 2px;
+  background: transparent url('/images/knights/knight-1-arm.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.knight-2 .body {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: transparent url('/images/knights/knight-2-body.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.knight-2 .arm {
+  left: 10px;
+  top: 10px;
+  z-index: 0;
+  transform-origin: 2px 2px;
+  background: transparent url('/images/knights/knight-2-arm.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.monster-1 .body {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: transparent url('/images/monsters/monster-1-body.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.monster-1 .arm {
+  left: 10px;
+  top: 10px;
+  z-index: 0;
+  transform-origin: 2px 2px;
+  background: transparent url('/images/monsters/monster-1-arm.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+.monster-2 .body {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: transparent url('/images/monsters/monster-2-body.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.monster-2 .arm {
+  left: 10px;
+  top: 10px;
+  z-index: 0;
+  transform-origin: 2px 2px;
+  background: transparent url('/images/monsters/monster-2-arm.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.monster-3 .body {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: transparent url('/images/monsters/monster-3-body.png') scroll no-repeat 0 0;
+  background-size:contain;
+}
+
+.monster-3 .arm {
+  left: 10px;
+  top: 10px;
+  z-index: 0;
+  transform-origin: 2px 2px;
+  background: transparent url('/images/monsters/monster-3-arm.png') scroll no-repeat 0 0;
+  background-size:contain;
 }
