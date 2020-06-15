@@ -26,9 +26,7 @@ import Speechbubble from './speechbubble';
 
 import { 
   MAX_MONSTERS,
-  MAX_KNIGHTS,
-  KNIGHT_MULTIPLIER,
-  MONSTER_MULTIPLIER
+  MAX_KNIGHTS
 } from '../../constants';
 //import Knight from './knight';
 //import Monster from './monster';

@@ -9,13 +9,14 @@ import { connect } from 'react-redux';
 
 import { 
   KNIGHT_HP,
-  MONSTER_HP
+  MONSTER_HP,
+  KNIGHT
 } from '../../constants';
 
 class Progress extends Component {
   constructor(props){
     super(props);
-    const max = props.kind === 'knight' ? KNIGHT_HP : MONSTER_HP
+    const max = props.kind === KNIGHT ? KNIGHT_HP : MONSTER_HP
     this.state = {
         max,
         value: max

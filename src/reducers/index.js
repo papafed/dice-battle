@@ -2,13 +2,17 @@ import {
   FIGHT,
   SETVALUE,
   RESTART,
-  RUNAWAY
+  KNIGHT_MULTIPLIER,
+  MONSTER_MULTIPLIER, 
+  KNIGHT, 
+  MONSTER
 } from '../constants';
 
 const initialState = {
   rolling: false,
   gameOver: false,
   lastRoundWinner: null,
+  lastPoints: 0,
   draw: false,
   knight: {
     hp: 100,
@@ -23,8 +27,7 @@ const initialState = {
 };
 
 function updatePlayer(state, action) {
-  console.log('updatePlayer', action.player, action.value)
-  if (action.player === 'knight') {
+  if (action.player === KNIGHT) {
     // store the value until we get the monster
     return {
       ...state,
@@ -40,13 +43,15 @@ function updatePlayer(state, action) {
       // both sides have rolled.
       if (state.knight.roll > action.value) {
         // take points away from monster
-        const hp = Math.max(state.monster.hp - state.knight.roll, 0)
+        const difference = state.knight.roll - action.value;
+        const hp = Math.max(state.monster.hp - (difference * MONSTER_MULTIPLIER), 0)
         return {
           ...state,
           rolling: false,
           draw: false,
           gameOver: hp === 0,
-          lastRoundWinner: 'knight',
+          lastRoundWinner: KNIGHT,
+          lastPoints: difference,
           monster: {
             ...state.monster,
             roll : action.value,
@@ -59,13 +64,15 @@ function updatePlayer(state, action) {
         }
       } else if (action.value > state.knight.roll) {
         // take points away from player
-        const hp = Math.max(state.knight.hp - action.value, 0)
+        const difference = action.value - state.knight.roll;
+        const hp = Math.max(state.knight.hp - (difference * KNIGHT_MULTIPLIER), 0)
         return {
           ...state,
           rolling: false,
           draw: false,
           gameOver: hp === 0,
-          lastRoundWinner: 'monster',
+          lastRoundWinner: MONSTER,
+          lastPoints: difference,
           knight: {
             ...state.knight,
             hp
@@ -81,7 +88,8 @@ function updatePlayer(state, action) {
           ...state,
           rolling: false,
           draw: true,
-          lastRoundWinner: null
+          lastRoundWinner: null,
+          lastPoints: 0
         }
       }
     }
@@ -92,14 +100,12 @@ function updatePlayer(state, action) {
 export default (state = initialState, action) => {
   switch (action.type) {
       case FIGHT:
-        console.log('fighting reducer')
           return {
               ...state,
               rolling: true
           };
 
       case SETVALUE:
-        console.log('setting value ', action)
           return updatePlayer(state, {
             player: action.payload.player,
             value: action.payload.value

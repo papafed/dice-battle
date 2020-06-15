@@ -25,16 +25,15 @@ class Dice extends Component {
       this.value = val;
     } else {
       const newValue = this.value + val;
-      //console.log('Score for', this.props.player, 'is', newValue)
       this.props.setValue(newValue, this.props.player);
       this.value = 0;
     }
   }
 
   render() {
-    const {player} = this.props;
+    const {player, rolling} = this.props;
     return (
-        <div className={`dice ${player}`}>
+        <div className={`dice ${player} ${rolling ? 'rolling': ''}`}>
           <Die player={player} die={1} rollCallback={this.calculateScore} />
           <Die player={player} die={2} rollCallback={this.calculateScore} />
       </div>
@@ -43,5 +42,11 @@ class Dice extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    rolling: state.rolling
+  }
+};
 
-export default connect(null, { setValue })(Dice);
+
+export default connect(mapStateToProps, { setValue })(Dice);

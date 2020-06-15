@@ -11,36 +11,37 @@ import {COMMENTARY} from './constants';
 import './App.css';
 
 function App(props) {
-  const {rolling, gameOver, draw, lastRoundWinner, fight, restart} = props;
+  const {rolling, gameOver, draw, lastRoundWinner, fight, restart, knight, lastPoints} = props;
   return (
     <div className="App">
+      <h1>Dice Battle</h1>
         <Player kind="knight" />
         <Dice player="knight" />
         <Dice player="monster" />
         <Player kind="monster" />
-        <button className="button-fight" disabled = {rolling || gameOver} type="button" onClick={fight}>Fight!</button>
+        <button className="button-fight" disabled = {rolling || gameOver} type="button" onClick={fight}>Attack!</button>
         <button className="button-reset" type="button"onClick={restart}>Reset</button>
         <div className="caption">
           {
             draw ? COMMENTARY.draw :
-            lastRoundWinner && COMMENTARY[lastRoundWinner].replace('#score', props[lastRoundWinner])
+            lastRoundWinner && COMMENTARY[lastRoundWinner].replace('#score', lastPoints)
           }
         </div>
         {
           gameOver &&
-            <div className="gameover">{COMMENTARY.gameOver}</div>
+            <div className={`gameover ${knight.won ? 'victory' :''}`}>{knight.won ? COMMENTARY.victory : COMMENTARY.gameOver}</div>
         }
     </div>
   );
 }
 
-const mapStateToProps = ({rolling, gameOver, draw, lastRoundWinner, monster, knight}) => ({
+const mapStateToProps = ({rolling, gameOver, draw, lastRoundWinner, lastPoints, knight}) => ({
   rolling,
   gameOver,
   draw,
   lastRoundWinner,
-  monster: monster.roll,
-  knight: knight.roll
+  lastPoints, 
+  knight
 });
 
 const mapDispatchToProps = {

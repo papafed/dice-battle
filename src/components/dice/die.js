@@ -20,6 +20,8 @@ import { DICE_SIDES } from '../../constants';
 class Dice extends Component {
   constructor(props){
     super(props);
+    this.audioRef1 = React.createRef();
+    this.audioRef2 = React.createRef();
     this.state = {
         value: 0
     }
@@ -28,11 +30,19 @@ class Dice extends Component {
   static getDerivedStateFromProps = (props) => {
     if (props.rolling) {
       const value =  Math.floor(Math.random() * DICE_SIDES) + 1;
-      console.log(props.player,'rolled a', value);
-      props.rollCallback(value, props.die);
+      setTimeout(()=>{
+        props.rollCallback(value, props.die);
+      }, 4000);
+      
       return {value}
     } else {
       return null;
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.rolling) {
+
     }
   }
 
@@ -40,44 +50,59 @@ class Dice extends Component {
     const {rolling, player} = this.props;
     const {value} = this.state;
 
-    return <p>{value}</p>
     return (
-      <div className={`die ${player} ${rolling ? 'rolling': ''} value-${value}`}>
-        <div className="face face-1">
-            <div className="dot"></div>
-        </div>
-        <div className="face face-2">
-            <div className="dot"></div>
-            <div className="dot"></div>
-        </div>
-        <div className="face face-3">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-        </div>
-        <div className="face face-4">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-        </div>
-        <div className="face face-5">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-        </div>
-        <div className="face face-6">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-        </div>
+    <>
+      { rolling && <>
+        <audio ref={this.audioRef1} src={`${process.env.PUBLIC_URL}/sounds/dice/dice-1.mp3`} autoPlay />
+        <audio ref={this.audioRef2} src={`${process.env.PUBLIC_URL}/sounds/dice/dice-2.mp3`} autoPlay />
+        </>
+      }
+        <div className={`die ${player} ${rolling ? 'rolling': ''} value-${value}`}>
+      <div className="side front">
+        <div className="dot center"></div>
       </div>
-    );
+      <div className="side front inner"></div>
+      <div className="side top">
+        <div className="dot dtop dleft"></div>
+        <div className="dot dbottom dright"></div>
+      </div>
+      <div className="side top inner"></div>
+      <div className="side right">
+        <div className="dot dtop dleft"></div>
+        <div className="dot center"></div>
+        <div className="dot dbottom dright"></div>
+      </div>
+      <div className="side right inner"></div>
+      <div className="side left">
+        <div className="dot dtop dleft"></div>
+        <div className="dot dtop dright"></div>
+        <div className="dot dbottom dleft"></div>
+        <div className="dot dbottom dright"></div>
+      </div>
+      <div className="side left inner"></div>
+      <div className="side bottom">
+        <div className="dot center"></div>
+        <div className="dot dtop dleft"></div>
+        <div className="dot dtop dright"></div>
+        <div className="dot dbottom dleft"></div>
+        <div className="dot dbottom dright"></div>
+      </div>
+      <div className="side bottom inner"></div>
+      <div className="side back">
+        <div className="dot dtop dleft"></div>
+        <div className="dot dtop dright"></div>
+        <div className="dot dbottom dleft"></div>
+        <div className="dot dbottom dright"></div>
+        <div className="dot center dleft"></div>
+        <div className="dot center dright"></div>
+      </div>
+      <div className="side back inner"></div>
+      <div className="side cover x"></div>
+      <div className="side cover y"></div>
+      <div className="side cover z"></div>
+    </div>
+     </>
+    )
   }
 }
 
