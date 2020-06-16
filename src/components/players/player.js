@@ -22,7 +22,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Progress from './progress';
-import Speechbubble from './speechbubble';
+import SpeechBubble from './speechbubble';
+import PlayerSound from './playersound';
 
 import { 
   MAX_MONSTERS,
@@ -36,28 +37,30 @@ class Player extends Component {
     super(props);
     this.knight = Math.floor(Math.random() * MAX_KNIGHTS) + 1;
     this.monster = Math.floor(Math.random() * MAX_MONSTERS) + 1;
-    this.state = {
-        rolling: false,
-    }
-
   }
 
   render() {
-    const {kind} = this.props;
+    const {kind, rolling, lastRoundWinner} = this.props;
     return (
-        <div className={`player ${kind} ${kind}-${this[kind]}`}>
-          <div className="body"/>
-          <div className="arm"/>
+        <div className={`player ${kind} ${kind}-${this[kind]} ${!rolling && lastRoundWinner && lastRoundWinner === kind ? 'animate' : ''}`}>
+          <div className="person">
+            <div className="body"/>
+            <div className="arm"/>
+          </div>
           <Progress kind={kind} />
-          <Speechbubble kind={kind} number={this[kind]}/>
+          { !rolling && lastRoundWinner && 
+            <SpeechBubble kind={kind} number={this[kind]}/>
+          }
+          <PlayerSound kind={kind} number={this[kind]}/>
       </div>
  
     );
   }
 }
 
-const mapStateToProps = ({rolling}) => ({
-    rolling: rolling
+const mapStateToProps = ({rolling, lastRoundWinner}) => ({
+    rolling,
+    lastRoundWinner
 });
 
 const mapDispatchToProps = {

@@ -8,7 +8,6 @@ import Dice from './components/dice/dice';
 import Player from './components/players/player';
 
 import {COMMENTARY} from './constants';
-import './App.css';
 
 function App(props) {
   const {rolling, gameOver, draw, lastRoundWinner, fight, restart, knight, lastPoints} = props;

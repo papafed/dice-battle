@@ -121,7 +121,7 @@
 }
 
 .die:nth-of-type(2) {
-  top: 150px;
+  top: 12vw;
   animation-direction: reverse;
 }
 

@@ -30,7 +30,7 @@ class Dice extends Component {
       const value =  Math.floor(Math.random() * DICE_SIDES) + 1;
       setTimeout(()=>{
         props.rollCallback(value, props.die);
-      }, 4000);
+      }, 3300);
       
       return {value}
     } else {
@@ -42,10 +42,11 @@ class Dice extends Component {
     const {rolling, player} = this.props;
     const {value} = this.state;
 
+    if (rolling) {
+      document.getElementById('dice').play();
+    }
+
     return (<>
-      { 
-        rolling && <audio src={`${process.env.PUBLIC_URL}/sounds/dice/dice-stereo.mp3`} autoPlay />
-      }
       <div className={`die ${player} ${rolling ? 'rolling': ''} value-${value}`}>
         <div className="side front">
           <div className="dot center"></div>

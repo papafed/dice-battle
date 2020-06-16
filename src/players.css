@@ -1,0 +1,181 @@
+.player {
+  position: absolute;
+  width: 24vw;
+  height: 100%;
+  top: 17vw;
+}
+
+.speechbubble {
+  background: transparent no-repeat scroll 0 0;
+  background-size: 100% 100%;
+	text-align: center;
+  
+	box-sizing: content-box;
+	line-height: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='112.095'%3E%3Cpath d='M360.877 531.878c-1.45 3.556-4.054 5.874-6.11 8.683 2.909-2.074 6.21-4.086 9.049-7.302m-2.946-1.38c-3.418-2.1-5.652-5.24-5.652-8.599 0-6.34 7.636-11.479 17.055-11.479s17.054 5.14 17.054 11.48c0 6.339-7.635 11.478-17.054 11.478-3.078 0-5.966-.549-8.458-1.509' fill='%237a7a7a' filter='url(%23a)' transform='matrix(3.55797 0 0 3.08308 -1248.731 -1566.21)'/%3E%3Cpath d='M360.877 529.878c-1.45 3.556-4.054 5.874-6.11 8.683 2.909-2.074 6.21-4.086 9.049-7.302m-2.946-1.38c-3.418-2.1-5.652-5.24-5.652-8.599 0-6.34 7.636-11.479 17.055-11.479s17.054 5.14 17.054 11.48h0c0 6.339-7.635 11.478-17.054 11.478-3.078 0-5.966-.549-8.458-1.509' fill='%23fff' stroke='%23000' stroke-width='.302' stroke-linecap='round' stroke-linejoin='round' transform='matrix(3.55797 0 0 3.08308 -1248.731 -1566.21)'/%3E%3C/svg%3E ");
+  white-space:nowrap;
+  position: absolute;
+  top: -10vw;
+  left: 14vw;
+  padding: 3vw 5vw 5.5vw 5vw;
+  font-size: 1.5vw;
+}
+.monster .speechbubble {
+  transform: rotateY(180deg);
+  left:auto;
+  right: 15vw;
+  top: -6vw;
+}
+
+.monster .speechbubble span {
+  display: block;
+  transform: rotateY(180deg);
+}
+
+.progressbar {
+  width: 14px;
+  height: 27vw;
+  position: absolute;
+  top: 0;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.4);
+}
+
+.knight .progressbar {
+  left: 2.5vw;
+}
+
+.monster .progressbar {
+  right: 0;
+}
+
+.progressbar p {
+  position: absolute;
+  font-size: 1.5vw;
+  bottom: -4vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.block {
+  position:absolute; 
+  left: 0;
+  right:0;
+  bottom: 0;
+  background: transparent scroll repeat-y 0 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.knight .block {
+  background-image: url('/images/progress-knight.png');
+}
+
+.monster .block {
+  background-image: url('/images/progress-monster.png');
+}
+
+.player.knight { left: 6vw; }
+
+.player.monster { right: 6vw; }
+
+.monster .person {
+  position: relative;
+  top: -2vw;
+}
+
+.body {
+  position: absolute;
+  left: 0;
+  top: -4vw;
+  z-index: 2;
+  width: 24vw;
+  height: 33.4vw;
+  background-size: contain!important;
+}
+
+.arm {
+  position: absolute;
+  left: 0;
+  top: -4vw;
+  z-index: 1;
+  transition: transform 0.35s ease-in;
+  width: 24vw;
+  height: 33.4vw;
+  background-size: contain!important;
+}
+
+.knight-1 .body {
+  background: transparent url('/images/knights/knight-1-body.png') scroll no-repeat 0 0;
+  
+}
+
+.knight-1 .arm {
+  transform-origin: 50.3797% 36%;
+  background: transparent url('/images/knights/knight-1-arm.png') scroll no-repeat 0 0;
+  
+}
+
+.knight-2 .body {
+  background: transparent url('/images/knights/knight-2-body.png') scroll no-repeat 0 0;
+}
+
+.knight-2 .arm {
+  transform-origin: 65.569% 24%;
+  background: transparent url('/images/knights/knight-2-arm.png') scroll no-repeat 0 0;
+  
+}
+
+.monster-1 .body {
+  background: transparent url('/images/monsters/monster-1-body.png') scroll no-repeat 0 0;
+ 
+}
+
+.monster-1 .arm {
+  transform-origin: 56.2025% 34.9091%;
+  background: transparent url('/images/monsters/monster-1-arm.png') scroll no-repeat 0 0;
+ 
+}
+
+.monster-2 .body {
+  z-index: 1;
+  background: transparent url('/images/monsters/monster-2-body.png') scroll no-repeat 0 0;
+  
+}
+
+.monster-2 .arm {
+  z-index: 2;
+  transform-origin: 51.1392% 77.4545%;
+  background: transparent url('/images/monsters/monster-2-arm.png') scroll no-repeat 0 0;
+ 
+}
+
+.monster-3 .body {
+  background: transparent url('/images/monsters/monster-3-body.png') scroll no-repeat 0 0;
+}
+
+.monster-3 .arm {
+  left: -20px;
+  transform: scaleX(0);
+  transform-origin: 33.6709% 42.3636%;
+  background: transparent url('/images/monsters/monster-3-arm.png') scroll no-repeat 0 0;
+}
+
+.animate.monster-1 .arm {
+  transform: rotateZ(-97deg);
+}
+
+.animate.monster-2 .arm {
+  transform: rotateZ(-52deg);
+}
+
+.animate.monster-3 .arm {
+  transform: scaleX(1.5)
+}
+
+.animate.knight-1 .arm {
+  transform: rotateZ(43deg);
+}
+
+.animate.knight-2 .arm {
+  transform: rotateZ(159deg);
+}
